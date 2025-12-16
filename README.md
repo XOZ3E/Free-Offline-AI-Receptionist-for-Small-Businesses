@@ -85,13 +85,10 @@ CALLER hears AI response
 sudo apt update && sudo apt upgrade -y
 
 # Install BlueZ and Bluetooth tools
-sudo apt install bluez bluez-tools pulseaudio pulseaudio-module-bluetooth -y
+sudo apt install pulseaudio
 
 # Install Python and pip
 sudo apt install python3 python3-pip python3-dev -y
-
-# Install PortAudio (required for sounddevice)
-sudo apt install portaudio19-dev -y
 ```
 
 ### Step 2: Install Python Dependencies
@@ -129,63 +126,20 @@ echo "Model path: $(pwd)/vosk-model-en-us-0.22"
 
 ### Step 5: Configure BlueZ as Bluetooth Headset
 
-```bash
-# Edit BlueZ configuration
-sudo nano /etc/bluetooth/main.conf
-```
-
-Add or modify these lines:
-```ini
-[General]
-Class = 0x200420
-DiscoverableTimeout = 0
-Enable=Source,Sink,Media,Socket
-```
-
-```bash
-# Restart Bluetooth service
-sudo systemctl restart bluetooth
-```
+**Install BLUEZ from here ** [BLUEZ](https://www.bluez.org/)
+Setup all required config and drivers ask me if it doensn't work 
 
 ### Step 6: Configure PulseAudio
-
-```bash
-# Load Bluetooth modules
-pactl load-module module-bluetooth-discover
-pactl load-module module-bluetooth-policy
-
-# Set loopback from Bluetooth to Monitor of Sounds
-pactl load-module module-loopback source=bluez_source.XX_XX_XX_XX_XX_XX sink=alsa_output.pci-0000_00_1f.3.analog-stereo
-```
-
-**Note:** Replace `XX_XX_XX_XX_XX_XX` with your phone's Bluetooth MAC address (find it with `pactl list sources`).
+Only the first time go to Recording and change what ever says monitor for both BLUEZ and voice agent 
 
 ### Step 7: Pair Your Phone
-
-```bash
-# Start Bluetooth control
-bluetoothctl
-
-# Inside bluetoothctl:
-power on
-agent on
-default-agent
-discoverable on
-pairable on
-
-# From your phone, pair with the PC
-# Accept pairing request
-
-# Trust the device
-trust XX:XX:XX:XX:XX:XX
-exit
-```
+**Make sure you turn on phone calling on the bluethooth on phone**
 
 ### Step 8: Setup Automate App on Android
 
 1. Download **Automate** app from Google Play Store
-2. Import the provided flow file: `auto_answer_call.flow` (link in repository)
-3. Grant necessary permissions (Phone, Bluetooth)
+2. Import the provided flow file: `Vfkl.flo` (link in repository)
+3. Grant necessary permissions (Phone,logs)
 4. Enable the flow
 5. Test by calling your phone
 
@@ -255,7 +209,6 @@ The assistant will:
 ### Stopping the Assistant
 
 - Press `Ctrl+C` in the terminal
-- Or say "exit" during a call (if configured)
 
 ---
 
