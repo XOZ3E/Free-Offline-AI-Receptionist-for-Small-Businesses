@@ -65,12 +65,14 @@ CALLER hears AI response
 ## 📋 Prerequisites
 
 ### Hardware Requirements
-- A Linux PC (Ubuntu/Debian recommended)
+- A PC with **Linux** (Ubuntu/Debian recommended) or **Windows 10/11**
 - Bluetooth-enabled phone
 - Bluetooth adapter on PC (built-in or USB)
 - Microphone and speakers (or monitor of sounds routing)
 
 ### Software Requirements
+
+#### Linux
 - **Linux OS** (tested on Ubuntu 20.04+)
 - **Python 3.8+**
 - **BlueZ** (Bluetooth stack for Linux)
@@ -78,11 +80,22 @@ CALLER hears AI response
 - **Ollama** (for running AI models)
 - **Automate app** on Android phone (for auto-answering calls)
 
+#### Windows
+- **Windows 10/11**
+- **Python 3.8+**
+- **Ollama for Windows** (for running AI models)
+- **Automate app** on Android phone (for auto-answering calls)
+- **VB-Audio Virtual Cable** (optional, for advanced audio routing)
+
 ---
 
 ## 🚀 Installation Guide
 
-### Step 1: Install System Dependencies
+---
+
+## 🐧 Linux Installation
+
+### Step 1: Install System Dependencies (Linux)
 
 ```bash
 # Update system packages
@@ -95,13 +108,13 @@ sudo apt install pulseaudio
 sudo apt install python3 python3-pip python3-dev -y
 ```
 
-### Step 2: Install Python Dependencies
+### Step 2: Install Python Dependencies (Linux)
 
 ```bash
 pip3 install pyttsx3 vosk sounddevice numpy
 ```
 
-### Step 3: Install Ollama
+### Step 3: Install Ollama (Linux)
 
 ```bash
 # Download and install Ollama
@@ -111,7 +124,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama pull phi3:latest
 ```
 
-### Step 4: Download Vosk Speech Recognition Model
+### Step 4: Download Vosk Speech Recognition Model (Linux)
 
 ```bash
 # Create directory for models
@@ -128,18 +141,84 @@ unzip vosk-model-en-us-0.22.zip
 echo "Model path: $(pwd)/vosk-model-en-us-0.22"
 ```
 
-### Step 5: Configure BlueZ as Bluetooth Headset
+---
+
+## 🪟 Windows Installation
+
+### Step 1: Install Python (Windows)
+
+1. Download Python 3.8+ from [python.org](https://www.python.org/downloads/)
+2. During installation, **check "Add Python to PATH"**
+3. Open Command Prompt or PowerShell
+
+### Step 2: Install Python Dependencies (Windows)
+
+```powershell
+pip install pyttsx3 vosk sounddevice numpy
+```
+
+### Step 3: Install Ollama (Windows)
+
+1. Download Ollama for Windows from [ollama.com/download](https://ollama.com/download)
+2. Run the installer
+3. Open Command Prompt and pull the model:
+
+```powershell
+ollama pull phi3:latest
+```
+
+### Step 4: Download Vosk Speech Recognition Model (Windows)
+
+1. Create a folder for models:
+```powershell
+mkdir %USERPROFILE%\vosk-models
+```
+
+2. Download the model from: https://alphacephei.com/vosk/models
+   - Recommended: `vosk-model-en-us-0.22.zip`
+
+3. Extract the ZIP to `C:\Users\<YourUsername>\vosk-models\`
+
+4. The final path should be: `C:\Users\<YourUsername>\vosk-models\vosk-model-en-us-0.22`
+
+**Alternative:** Set a custom path via environment variable:
+```powershell
+set VOSK_MODEL_PATH=D:\path\to\your\vosk-model
+```
+
+### Step 5: Bluetooth Setup (Windows)
+
+Unlike Linux (which uses BlueZ), Windows uses its built-in Bluetooth stack:
+
+1. **Pair your phone** via Windows Settings > Bluetooth & devices
+2. **Enable "Hands-free Telephony"** in the Bluetooth device properties
+3. When a call comes in, your phone's audio will route through the PC
+4. The script will automatically list available audio devices - note the index of your Bluetooth device
+
+**Optional: VB-Audio Virtual Cable**
+For advanced audio routing (similar to PulseAudio on Linux):
+1. Download from [vb-audio.com/Cable](https://vb-audio.com/Cable/)
+2. Install and restart
+3. Use it to route audio between applications
+
+---
+
+## 🐧 Linux-Specific Setup (continued)
+
+### Step 5: Configure BlueZ as Bluetooth Headset (Linux only)
 
 **Install BLUEZ from here ** [BLUEZ](https://www.bluez.org/)
 Setup all required config and drivers ask me if it doensn't work 
 
-### Step 6: Configure PulseAudio
+### Step 6: Configure PulseAudio (Linux only)
 Only the first time go to Recording and change what ever says monitor for both BLUEZ and voice agent 
 
-### Step 7: Pair Your Phone
+### Step 7: Pair Your Phone (Linux)
 **Make sure you turn on phone calling on the bluethooth on phone**
 
-### Step 8: Setup Automate App on Android
+---
+
+## 📱 Setup Automate App on Android (All Platforms)
 
 1. Download **Automate** app from Google Play Store
 2. Import the provided flow file: `Vfkl.flo` (link in repository)
@@ -194,12 +273,22 @@ engine.setProperty('voice', voices[0].id)  # Try different indices
 
 ### Running the Voice Assistant
 
+**Linux:**
 ```bash
 # Navigate to your script directory
 cd ~/voice-assistant
 
 # Run the assistant
 python3 voice_assistant.py
+```
+
+**Windows:**
+```powershell
+# Navigate to your script directory
+cd C:\path\to\voice-assistant
+
+# Run the assistant
+python voice_assistant.py
 ```
 
 The assistant will:
@@ -218,7 +307,9 @@ The assistant will:
 
 ## 🐛 Troubleshooting
 
-### No Audio from Phone
+### 🐧 Linux Troubleshooting
+
+#### No Audio from Phone (Linux)
 ```bash
 # Check PulseAudio sources
 pactl list sources short
@@ -228,7 +319,7 @@ pulseaudio -k
 pulseaudio --start
 ```
 
-### Bluetooth Connection Issues
+#### Bluetooth Connection Issues (Linux)
 ```bash
 # Restart Bluetooth
 sudo systemctl restart bluetooth
@@ -239,7 +330,7 @@ remove XX:XX:XX:XX:XX:XX
 # Then pair again
 ```
 
-### Ollama Not Responding
+#### Ollama Not Responding (Linux)
 ```bash
 # Stop background service
 sudo systemctl stop ollama
@@ -248,17 +339,57 @@ sudo systemctl stop ollama
 ollama serve
 ```
 
-### Poor Speech Recognition
+---
+
+### 🪟 Windows Troubleshooting
+
+#### No Audio from Phone (Windows)
+1. Check Windows Sound Settings > Recording devices
+2. Ensure your Bluetooth device shows as "Hands-Free AG Audio"
+3. Set it as default recording device
+4. Run the script - it will list available audio devices with their index numbers
+
+#### Bluetooth Connection Issues (Windows)
+1. Open Settings > Bluetooth & devices
+2. Remove the phone and re-pair
+3. Ensure "Hands-free Telephony" is enabled in device properties
+4. Restart Bluetooth: Settings > Bluetooth > Toggle Off/On
+
+#### Ollama Not Responding (Windows)
+```powershell
+# Check if Ollama is running
+tasklist | findstr ollama
+
+# Kill and restart
+taskkill /F /IM ollama.exe
+ollama serve
+```
+
+#### Audio Device Selection (Windows)
+If the wrong microphone is being used, edit `voice_assistant.py` and specify the device index:
+```python
+# Find this line and add device parameter:
+with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, 
+                       dtype='int16', channels=1, callback=callback, device=1) as stream:
+#                                                                    ^^^^^^^^
+# Replace 1 with your Bluetooth device index from the list shown at startup
+```
+
+---
+
+### General Troubleshooting (All Platforms)
+
+#### Poor Speech Recognition
 - Speak clearly and at moderate pace
 - Reduce background noise
 - Try a different Vosk model (larger = more accurate)
-- Adjust microphone input levels in PulseAudio
+- Adjust microphone input levels in your OS sound settings
 
 ---
 
 ## 🔮 Future Plans
 
-- **Windows Support**: Working on a Windows version using alternative Bluetooth solutions
+- ~~**Windows Support**: Working on a Windows version using alternative Bluetooth solutions~~ ✅ Done!
 - **Better Models**: Optimizing for GPUs to use larger, more capable AI models
 - **Web Interface**: Adding a web dashboard to monitor calls and responses
 - **Multi-language Support**: Adding support for multiple languages
