@@ -30,9 +30,10 @@ else:
 # Allow override via environment variable
 VOSK_MODEL_PATH = os.environ.get("VOSK_MODEL_PATH", VOSK_MODEL_PATH)
 
-# --- Global variable to manage the microphone stream instance ---
+# --- Global variables ---
 # We need this so the speak function can access and close the stream
 current_stream = None
+is_speaking = False  # Flag to prevent TTS echo from being recognized as input
 
 # --- TTS Setup (pyttsx3) ---
 engine = pyttsx3.init()
@@ -73,9 +74,10 @@ select_english_voice()
 def speak(text):
     print(f"\n{ASSISTANT_NAME} speaking: {text}")
     
-    # On Windows, stopping/starting the stream can cause issues
-    # Instead, we just let TTS play while stream continues (minor echo is acceptable)
-    global current_stream
+    global current_stream, is_speaking
+    
+    # Set speaking flag to ignore any STT input during TTS
+    is_speaking = True
     
     if IS_LINUX and current_stream:
         # Linux: Stop stream to prevent feedback loop
@@ -92,6 +94,23 @@ def speak(text):
         # Linux: Restart stream after speaking
         current_stream.start()
         print("[Microphone resumed listening]")
+    
+    # Clear the audio queue to discard any TTS echo that was captured
+    while not Q.empty():
+        try:
+            Q.get_nowait()
+        except queue.Empty:
+            break
+    
+    # Reset the recognizer to clear any partial results from TTS echo
+    recognizer.Reset()
+    
+    # Small delay to let any remaining echo dissipate
+    import time
+    time.sleep(0.3)
+    
+    is_speaking = False
+    print("[Microphone ready for next input]")
 
 
 # --- System Prompt & LLM Logic (CLI method) ---
@@ -246,11 +265,17 @@ if __name__ == "__main__":
             
             while True:
                 data = Q.get()
+                
+                # Skip processing if we're currently speaking (prevents TTS echo)
+                if is_speaking:
+                    continue
+                
                 if recognizer.AcceptWaveform(data):
                     result_json = recognizer.Result()
                     user_spoken_text = json.loads(result_json).get('text', '').strip()
                     
-                    if user_spoken_text and user_spoken_text != "the":  # Filter out common noise word
+                    # Filter out common noise words and short utterances
+                    if user_spoken_text and len(user_spoken_text) > 2 and user_spoken_text not in ["the", "a", "uh", "um"]:
                         if user_spoken_text.lower() == 'exit':
                             print("[System] Exit command received. Shutting down...")
                             break
