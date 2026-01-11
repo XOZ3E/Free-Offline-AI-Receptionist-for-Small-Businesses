@@ -1,0 +1,122 @@
+{
+  "appointments": [
+    {
+      "id": 2,
+      "date": "2025-12-26",
+      "time": "11:30 AM",
+      "customer_name": "Michael Brown",
+      "phone": "(555) 345-6789",
+      "service": "Men's Haircut",
+      "staff": "Amanda",
+      "duration": 30,
+      "price": 25,
+      "status": "confirmed"
+    },
+    {
+      "id": 3,
+      "date": "2025-12-26",
+      "time": "2:00 PM",
+      "customer_name": "Emily Davis",
+      "phone": "(555) 456-7890",
+      "service": "Highlights",
+      "staff": "Maria",
+      "duration": 150,
+      "price": 95,
+      "status": "confirmed"
+    },
+    {
+      "id": 4,
+      "date": "2025-12-27",
+      "time": "9:30 AM",
+      "customer_name": "Kevin",
+      "phone": "555-234-5672",
+      "service": "Basic Facial",
+      "staff": "Any",
+      "duration": 60,
+      "price": 60,
+      "status": "confirmed"
+    },
+    {
+      "id": 6,
+      "date": "2025-12-26",
+      "time": "10:00 AM",
+      "customer_name": "Linda Smith",
+      "phone": "555-9876",
+      "service": "Basic Hair Graft",
+      "staff": "Any",
+      "duration": 30,
+      "price": 45,
+      "status": "confirmed"
+    },
+    {
+      "id": 9,
+      "date": "2025-12-31",
+      "time": "10:00 AM",
+      "customer_name": "Davis",
+      "phone": "5554627131",
+      "service": "Men's Haircut",
+      "staff": "Any",
+      "duration": 30,
+      "price": 25,
+      "status": "confirmed"
+    },
+    {
+      "id": 10,
+      "date": "2025-12-31",
+      "time": "11:00 AM",
+      "customer_name": "Kevin",
+      "phone": "555-426215",
+      "service": "Men's Haircut",
+      "staff": "Any",
+      "duration": 30,
+      "price": 25,
+      "status": "confirmed"
+    }
+  ],
+  "time_slots": {
+    "monday_to_friday": [
+      "9:00 AM",
+      "9:30 AM",
+      "10:00 AM",
+      "10:30 AM",
+      "11:00 AM",
+      "11:30 AM",
+      "12:00 PM",
+      "12:30 PM",
+      "1:00 PM",
+      "1:30 PM",
+      "2:00 PM",
+      "2:30 PM",
+      "3:00 PM",
+      "3:30 PM",
+      "4:00 PM",
+      "4:30 PM",
+      "5:00 PM",
+      "5:30 PM",
+      "6:00 PM",
+      "6:30 PM"
+    ],
+    "saturday": [
+      "9:00 AM",
+      "9:30 AM",
+      "10:00 AM",
+      "10:30 AM",
+      "11:00 AM",
+      "11:30 AM",
+      "12:00 PM",
+      "12:30 PM",
+      "1:00 PM",
+      "1:30 PM",
+      "2:00 PM",
+      "2:30 PM",
+      "3:00 PM",
+      "3:30 PM",
+      "4:00 PM",
+      "4:30 PM",
+      "5:00 PM",
+      "5:30 PM"
+    ],
+    "sunday": []
+  },
+  "next_appointment_id": 11
+}

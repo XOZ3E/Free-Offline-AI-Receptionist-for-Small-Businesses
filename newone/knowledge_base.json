@@ -1,0 +1,98 @@
+{
+  "assistant_info": {
+    "name": "Sophia",
+    "role": "AI receptionist for Glamour Beauty Salon",
+    "voice_gender": "female",
+    "capabilities": ["booking_appointments", "checking_availability", "providing_information", "calling_manager"]
+  },
+  "business_info": {
+    "name": "Glamour Beauty Salon",
+    "type": "Beauty Salon & Spa",
+    "owner_name": "Maria Rodriguez",
+    "phone": "(555) 123-4567",
+    "address": "123 Main Street, Downtown",
+    "email": "info@glamoursalon.com"
+  },
+  "business_hours": {
+    "monday_to_friday": "9:00 AM - 7:00 PM",
+    "saturday": "9:00 AM - 6:00 PM",
+    "sunday": "Closed",
+    "holidays": "Closed on major holidays"
+  },
+  "services": {
+    "haircuts": {
+      "women_haircut": {"price": 45, "duration": 60, "description": "Wash, cut, and blow dry"},
+      "men_haircut": {"price": 25, "duration": 30, "description": "Classic haircut and styling"},
+      "kids_haircut": {"price": 20, "duration": 30, "description": "Haircut for children under 12"}
+    },
+    "coloring": {
+      "full_color": {"price": 85, "duration": 120, "description": "Full hair coloring service"},
+      "highlights": {"price": 95, "duration": 150, "description": "Partial or full highlights"},
+      "root_touch_up": {"price": 65, "duration": 90, "description": "Root color refresh"}
+    },
+    "styling": {
+      "blowout": {"price": 35, "duration": 45, "description": "Professional blow dry and style"},
+      "updo": {"price": 65, "duration": 60, "description": "Special occasion hairstyle"},
+      "treatment": {"price": 40, "duration": 45, "description": "Deep conditioning treatment"}
+    },
+    "nails": {
+      "manicure": {"price": 30, "duration": 45, "description": "Classic manicure"},
+      "pedicure": {"price": 45, "duration": 60, "description": "Relaxing pedicure"},
+      "gel_nails": {"price": 50, "duration": 60, "description": "Gel polish manicure"}
+    },
+    "facial": {
+      "basic_facial": {"price": 60, "duration": 60, "description": "Deep cleansing facial"},
+      "deluxe_facial": {"price": 85, "duration": 90, "description": "Premium anti-aging facial"}
+    },
+    "waxing": {
+      "eyebrow": {"price": 15, "duration": 15, "description": "Eyebrow shaping"},
+      "upper_lip": {"price": 10, "duration": 10, "description": "Upper lip waxing"},
+      "full_leg": {"price": 55, "duration": 45, "description": "Full leg waxing"}
+    }
+  },
+  "staff": {
+    "stylists": ["Maria (Owner)", "Jessica", "Amanda", "Sarah"],
+    "nail_technicians": ["Lisa", "Emma"],
+    "estheticians": ["Rachel"]
+  },
+  "policies": {
+    "cancellation": "Please cancel or reschedule at least 24 hours in advance to avoid a $25 fee",
+    "late_arrival": "If you arrive more than 15 minutes late, we may need to reschedule your appointment",
+    "payment": "We accept cash, credit cards, and digital payments",
+    "tips": "Gratuity is appreciated but not required"
+  },
+  "faq": {
+    "parking": "Free parking is available in the lot behind our building",
+    "first_time": "First-time clients get 15% off their first service!",
+    "gift_certificates": "Yes, we offer gift certificates in any amount",
+    "products": "We carry professional hair care products from top brands",
+    "walk_ins": "Walk-ins are welcome based on availability, but appointments are recommended"
+  },
+  "common_questions": {
+    "booking_questions": [
+      "What time slots do you have available?",
+      "Can I book an appointment for tomorrow?",
+      "Do you have evening appointments?",
+      "How far in advance should I book?"
+    ],
+    "service_questions": [
+      "How much does a haircut cost?",
+      "How long does coloring take?",
+      "Do you do balayage?",
+      "What services do you offer?"
+    ],
+    "manager_questions": [
+      "Can I speak to the manager?",
+      "I have a complaint",
+      "I need to discuss something special",
+      "Can you ask the owner?"
+    ]
+  },
+  "responses": {
+    "greeting": "Thank you for calling Glamour Beauty Salon! This is Sophia, your AI assistant. How may I help you today?",
+    "booking_initiated": "I'd be happy to help you book an appointment. What service are you interested in?",
+    "checking_availability": "Let me check our available time slots for you.",
+    "manager_needed": "I understand. Let me get the manager for you. Please hold for just a moment.",
+    "closed": "We're currently closed. Our hours are Monday to Friday 9 AM to 7 PM, and Saturday 9 AM to 6 PM. We're closed on Sundays."
+  }
+}
