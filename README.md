@@ -4,7 +4,7 @@
 **A free, offline voice assistant for automatically handling phone calls using BlueZ, Ollama, and voice recognition.**
 
 ---
-# Check out the newone folder and let me know if you guys want a debain pacakage 
+# Check out the newone folder and let me know if you guys need a executable 
 
 ## 🎯 Mission
 
