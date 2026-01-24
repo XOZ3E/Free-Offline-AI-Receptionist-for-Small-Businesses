@@ -7,7 +7,7 @@
 # Check out the newone folder and let me know if you guys need a executable 
 # I have used base models as my system doesn't have good hardware replace them with high end if you want 
 # switch to this [TTS](https://huggingface.co/spaces/Qwen/Qwen3-TTS) and use your own voice it was recently lauched by Qwen 
-# Pls help this project reach every small business and i need some to develop it for windows cause my pc has issues with network card 
+# Pls help this project reach every small business and i need someone to develop it for windows cause my pc has issues with network card 
 ## 🎯 Mission
 
 This project was created to help small businesses and individuals who are being charged excessive fees by commercial AI voice assistant services. Why pay hundreds of dollars per month when you can run your own voice assistant completely free and offline?
